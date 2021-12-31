@@ -1,0 +1,130 @@
+
+[credential]
+	helper = /mnt/c/Program\\ Files/Git/mingw64/libexec/git-core/git-credential-manager-core.exe
+[credential "https://dev.azure.com"]
+	useHttpPath = true
+[core]
+	editor = code --wait
+[user]
+	email = carl.westman@toyota-industries.eu
+	name = Carl Westman
+[color]
+  ui = true
+[alias]
+  # Source: https://github.com/Vagr9K/dotfiles/blob/master/git/gitconfig
+  # Misc
+  snapshot = !git stash save "snapshot: $(date)" && git stash apply "stash@{0}"
+  ls-snapshots = !git stash list --grep snapshot
+  recent-branches = !git for-each-ref --count=15 --sort=-committerdate refs/heads/ --format='%(refname:short)'
+
+  # Branch (b)
+  b=branch
+  ba=branch --all --verbose --verbose
+  bl=branch --verbose --verbose
+  bc=checkout -b
+  bx=branch --delete
+  bm=branch --move
+  bs=show-branch
+
+  # Commit (c)
+  c=commit
+  ca=commit --all
+  cm=commit --message
+  cam=commit --all --message
+  co=checkout
+  cop=checkout --patch
+  cf=commit --amend --reuse-message HEAD
+  chp=cherry-pick
+  cr=revert
+  cres=reset "HEAD^"
+  cs=show
+
+  # Data (d)
+  d=ls-files
+  dc=ls-files --cached
+  dd=ls-files --deleted
+  dx=ls-files --deleted
+  dm=ls-files --modified
+  do=ls-files --other --exclude-standard
+  dk=ls-files --killed
+  di=!git status --porcelain --short --ignored | sed -n '"s/^!! //p"'
+
+  # Fetch (f)
+  f=fetch
+  fa=fetch --all
+  fc=clone
+  fp=pull
+  fr=pull --rebase
+  fpr=pull --rebase
+
+  # Grep (g)
+  g=grep
+  gi=grep --ignore-case
+  gl=grep --files-with-matches
+  gL=grep --files-without-matches
+  gv=grep --invert-match
+  gw=grep --word-regexp
+
+  # Index (i)
+  ia=add
+  iap=add --patch
+  iu=add --update
+  id=diff --no-ext-diff --cached
+  idw=diff --no-ext-diff --cached --word-diff
+  ir=reset
+  irp=reset --patch
+  ix=rm -r --cached
+
+  # Log (l)
+  l1 = log --graph --abbrev-commit --decorate --date=relative --format=format:'%C(bold blue)%h%C(reset) - %C(bold green)(%ar)%C(reset) %C(white)%s%C(reset) %C(dim white)- %an%C(reset)%C(bold yellow)%d%C(reset)' --all
+  l2 = log --graph --abbrev-commit --decorate --format=format:'%C(bold blue)%h%C(reset) - %C(bold cyan)%aD%C(reset) %C(bold green)(%ar)%C(reset)%C(bold yellow)%d%C(reset)%n''          %C(white)%s%C(reset) %C(dim white)- %an%C(reset)' --all
+  l = !git l1
+
+  # Merge (m)
+  m=merge
+  mnc=merge --no-commit
+  mf=merge --ff
+  mnf=merge --no-ff
+  ma=merge --abort
+  mt=mergetool
+
+  # Push (p)
+  p=push
+  pf=push --force-with-lease
+  pa=push --all
+  pt=push --tags
+  pat=push --all && git push --tags
+  pc=!git push --set-upstream origin "$(git-branch-current 2> /dev/null)"
+  pp=!git pull origin "$(git-branch-current 2> /dev/null)" && git push origin "$(git-branch-current 2> /dev/null)"
+
+  # Rebase (r)
+  r=rebase
+  ra=rebase --abort
+  rc=rebase --continue
+  ri=rebase --interactive
+  rs=rebase --skip
+
+  # Stash (s)
+  stsh = stash --keep-index
+  staash = stash --include-untracked
+  staaash = stash --all
+  s=stash
+  sa=stash apply
+  sx=stash drop
+  sl=stash list
+  sd=stash show --patch --stat
+  sp=stash pop
+  ss=stash save
+  ssu=stash save --include-untracked
+
+  # Working Copy (w)
+  ws=status
+  wd=diff --no-ext-diff
+  wdw=diff --no-ext-diff --word-diff
+  wrs=reset --soft
+  wrh=reset --hard
+  wc=clean -n
+  wcf=clean -f
+  wcfd=clean -df
+  wx=rm -r
+  wxf=rm -rf
